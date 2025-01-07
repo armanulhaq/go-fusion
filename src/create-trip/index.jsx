@@ -173,7 +173,7 @@ Important: Ensure the response is ONLY the JSON object with no additional text, 
 
     return (
         // default padding-5 and margin-top-10
-        <div className="sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10">
+        <div className="sm:px-10 md:px-32 lg:px-56 xl:px-250 px-5 mt-10">
             <h2 className="font-bold text-3xl">
                 Tell us your travel preferences 🏕️
             </h2>
@@ -181,7 +181,7 @@ Important: Ensure the response is ONLY the JSON object with no additional text, 
                 Just provide some basic information, and our trip planner will
                 generate a customized itinerary based on your preferences.
             </p>
-            <div className="mt-20 flex flex-col gap-10">
+            <div className="mt-10 flex flex-col gap-10">
                 <div>
                     <h2 className="text-xl my-3 font-bold">
                         What is your destination of choice?
@@ -200,7 +200,7 @@ Important: Ensure the response is ONLY the JSON object with no additional text, 
             </div>
             <div>
                 <h2 className="text-xl my-3 font-bold">What is your Budget?</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-5">
                     {SelectBudgetOptions.map((item, index) => (
                         <div
                             key={index}
@@ -225,7 +225,7 @@ Important: Ensure the response is ONLY the JSON object with no additional text, 
                 <h2 className="text-xl my-3 font-bold">
                     Who do you plan on traveling with on your next adventure?
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-5">
                     {SelectTravelList.map((item, index) => (
                         <div
                             key={index}
@@ -248,7 +248,11 @@ Important: Ensure the response is ONLY the JSON object with no additional text, 
             </div>
 
             <div className="my-10 justify-end flex">
-                <Button onClick={onGenerateTrip} disable={loading}>
+                <Button
+                    className="bg-orange-500 text-white"
+                    onClick={onGenerateTrip}
+                    disable={loading}
+                >
                     {loading ? (
                         <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />
                     ) : (

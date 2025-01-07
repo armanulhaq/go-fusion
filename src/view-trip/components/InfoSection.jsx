@@ -7,11 +7,10 @@ const InfoSection = ({ trip }) => {
         const fetchImage = async () => {
             const API_KEY =
                 "rinOroAxkFsvc7nJ0idPzdTaLjSCZwnkOpTpobcY9eXTy4ytFolH3lhE";
-            const query = trip?.destination;
 
             try {
                 const response = await fetch(
-                    `https://api.pexels.com/v1/search?query=${query}&per_page=5`, // Increase per_page to get more options
+                    `https://api.pexels.com/v1/search?query=vacation&per_page=5`, // Increase per_page to get more options
                     {
                         headers: {
                             Authorization: API_KEY,
@@ -43,7 +42,7 @@ const InfoSection = ({ trip }) => {
     return (
         <div>
             <img
-                className="h-[340px] w-full object-cover object-center  rounded-lg"
+                className="h-[240px] lg:h-[340px]  w-full object-cover object-center  rounded-xl"
                 src={photoURL || "/places.jpg"}
                 alt=""
             />
@@ -53,9 +52,6 @@ const InfoSection = ({ trip }) => {
                     <h2 className="font-bold text-2xl">{trip?.destination}</h2>
                     <div className="flex gap-5">
                         <h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-xs md:text-md">
-                            📅 {trip?.duration.split(" ")[0]} day(s).
-                        </h2>
-                        <h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-xs md:text-md">
                             💲 {trip?.budget.split(" ")[0]}
                         </h2>
                         <h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-500 text-xs md:text-md">
@@ -64,15 +60,19 @@ const InfoSection = ({ trip }) => {
                     </div>
                 </div>
             </div>
-            <div className="flex gap-2 mb-5">
-                <div className="font-bold text-xl ">Best time to visit: </div>
-                <div className=" text-orange-400 text-lg ">
+            <div className="flex flex-col  gap-2 mb-5">
+                <div className="font-bold text-md lg:text-xl ">
+                    Best time to visit:{" "}
+                </div>
+                <div className=" text-orange-400 text-sm lg:text-lg ">
                     {trip?.bestTimeToVisit}
                 </div>
             </div>
-            <div className="flex gap-2 mb-5">
-                <div className="font-bold text-xl ">General Weather: </div>
-                <div className=" text-orange-400 text-lg ">
+            <div className="flex flex-col gap-2 mb-5">
+                <div className="font-bold text-md lg:text-lg  ">
+                    General Weather:{" "}
+                </div>
+                <div className="text-orange-400 text-sm lg:text-lg  ">
                     {trip?.weatherNote}
                 </div>
             </div>

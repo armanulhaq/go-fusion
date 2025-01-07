@@ -24,7 +24,7 @@ const PlaceCard = ({ place }) => {
                     <img
                         src={imageSrc}
                         alt={placeName}
-                        className="w-100 h-[130px] sm:w-[180px] sm:h-[180px] rounded-xl object-cover"
+                        className="w-100 h-[200px] sm:w-[200px] sm:h-[200px] rounded-xl object-cover"
                     />
                     <div className="flex flex-col justify-center flex-grow">
                         <div className="flex justify-between">
@@ -49,7 +49,7 @@ const PlaceCard = ({ place }) => {
                         )}
                     </div>
                 </div>
-                <div className="flex flex-wrap text-sm gap-8">
+                <div className="flex flex-wrap text-sm gap-2 lg:gap-8">
                     <span className="text-orange-400">⏰ {timeTravel}</span>
                     <span className="text-green-500">🤑 {ticketPricing}</span>
                     {duration && (

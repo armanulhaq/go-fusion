@@ -33,7 +33,7 @@ const Hotels = ({ trip }) => {
                                 <div className="flex justify-between mt-2">
                                     <h2 className="text-xl text-green-500 font-bold">
                                         {hotel?.pricePerNight}{" "}
-                                        <span className="text-xs">
+                                        <span className="text-xs font-medium">
                                             per night
                                         </span>
                                     </h2>

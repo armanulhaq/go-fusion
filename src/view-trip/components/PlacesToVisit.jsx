@@ -28,7 +28,7 @@ const PlacesToVisit = ({ trip }) => {
                             <h2 className="font-bold text-lg mt-8">
                                 {item.activity}
                             </h2>
-                            <div className="grid grid-cols-2">
+                            <div className="grid lg:grid-cols-2">
                                 {/* You can map through places if needed */}
                                 <div>
                                     <PlaceCard place={item} />

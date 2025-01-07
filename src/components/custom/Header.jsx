@@ -7,11 +7,6 @@ const Header = () => {
                 <img className="w-6 h-6 md:w-8 md:h-8" src="/logo.png" alt="" />
                 <div className="text-sm md:text-base font-bold">GoFusion</div>
             </div>
-            <div>
-                <Button className="text-sm md:text-base py-1 px-3 md:py-2 md:px-4 bg-black text-white">
-                    Sign In
-                </Button>
-            </div>
         </div>
     );
 };

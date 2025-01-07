@@ -18,8 +18,10 @@ const ViewTrip = () => {
     }
 
     return (
-        <div className="p-10">
-            <h1 className="text-3xl md:px-20 font-bold">Your Trip Plan</h1>
+        <div className="py-10  lg:p-10">
+            <h1 className="text-xl lg:text-3xl px-10  md:px-20 font-bold">
+                Your Trip Plan
+            </h1>
             {/* <pre className="mt-5 bg-gray-100 p-5 rounded">
                 {JSON.stringify(tripData, null, 2)}
             </pre> */}
