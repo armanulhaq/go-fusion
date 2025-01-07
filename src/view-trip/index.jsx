@@ -9,14 +9,10 @@ const ViewTrip = () => {
     const tripData = location.state?.tripData;
 
     if (!tripData) {
-        return (
-            <div className="p-10">
-                <h1 className="text-2xl font-bold">No Trip Data Found</h1>
-                <p>Please go back and create a trip plan.</p>
-            </div>
-        );
+        // Redirect to the home page if no trip data is found
+        navigate("/", { replace: true });
+        return null; // Return null to stop rendering the rest of the component
     }
-
     return (
         <div className="py-10  lg:p-10">
             <h1 className="text-xl lg:text-3xl px-10  md:px-20 font-bold">
