@@ -31,9 +31,7 @@ const CreateTrip = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    useEffect(() => {
-        console.log(formData);
-    }, [formData]);
+    useEffect(() => {}, [formData]);
 
     const onGenerateTrip = async () => {
         if (
@@ -101,6 +99,8 @@ const CreateTrip = () => {
                     "Successfully parsed JSON response",
                     parsedResponse
                 );
+                redirect("/view-trip", { state: { tripData: parsedResponse } }); //sends the data to view-trip
+                //useNavigate stored in redirect allows us to Pass additional data (called state) to the target route when navigating.
             } catch (parseError) {
                 console.error("JSON Parse Error:", parseError);
                 // If JSON parsing fails, show the cleaned response for debugging
