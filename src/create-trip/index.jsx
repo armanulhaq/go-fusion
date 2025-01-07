@@ -34,12 +34,7 @@ const CreateTrip = () => {
     useEffect(() => {}, [formData]);
 
     const onGenerateTrip = async () => {
-        if (
-            !formData?.location ||
-            !formData?.noOfDays ||
-            !formData?.traveller ||
-            !formData?.budget
-        ) {
+        if (!formData?.location || !formData?.traveller || !formData?.budget) {
             toast.error("Please fill all required fields.");
             return;
         }
@@ -52,19 +47,78 @@ const CreateTrip = () => {
         });
 
         const prompt = `You are a travel planning assistant. Generate a travel plan in valid JSON format.
-        The response must be a single JSON object with no additional text or formatting.
+The response must be a single JSON object with no additional text or formatting.
+Create a plan with the following exact structure:
+{
+    "destination": string,
+    "duration": string,
+    "groupSize": string,
+    "budget": string,
+    "hotels": [
+        {
+            "name": string,
+            "address": string,
+            "pricePerNight": string,
+            "coordinates": {
+                "lat": number,
+                "lng": number
+            },
+            "rating": number,
+            "description": string
+        }
+    ],
+    "itinerary": {
+        "morning": [
+            {
+                "time": string,
+                "activity": string,
+                "location": string,
+                "coordinates": {
+                    "lat": number,
+                    "lng": number
+                },
+                "price": string,
+                "description": string,
+                "recommendedDuration": string,
+                "bookingRequired": boolean,
+                "bestTimeToVisit": string,
+                "category": ["Cultural", "Adventure", "Food", "Nature", "Shopping"],
+                "difficultyLevel": "Easy/Moderate/Challenging",
+                "facilities": ["restrooms", "cafeteria", "parking", "wifi"],
+                "localTips": string,
+                "contactInfo": {
+                    "phone": string,
+                    "website": string
+                }
+            }
+        ],
+        "afternoon": [
+            // Same structure as morning activities
+        ],
+        "evening": [
+            // Same structure as morning activities
+        ]
+    },
+    "bestTimeToVisit": string,
+    "currency": string,
+    "weatherNote": string
+}
 
-        Create a plan for:
-        - Location: ${formData.location.label}
-        - Number of days: ${formData.noOfDays}
-        - Traveller(s): ${formData.traveller}
-        - Budget: ${formData.budget}
+Create a plan for:
+- Location: ${formData.location.label}
+- Number of days: ${formData.noOfDays}
+- Traveller(s): ${formData.traveller}
+- Budget: ${formData.budget}
 
-        Include:
-        - Hotels with name, address, price, geo-coordinates, rating, and descriptions
-        - Daily itinerary with places, details, coordinates, ticket pricing, and best visit times
+Requirements:
+1. Include exactly 5 hotels
+2. Each time period (morning, afternoon, evening) must have at least 2 activities
+3. All prices must include the local currency symbol
+4. All coordinates must be valid decimal numbers
+5. Ratings must be between 0 and 5, with one decimal place
+6. Times must be in HH:MM-HH:MM format
 
-        Important: Ensure the response is ONLY the JSON object with no additional text, markdown, or formatting.`;
+Important: Ensure the response is ONLY the JSON object with no additional text, markdown, or formatting.`;
 
         try {
             const msg = await anthropic.messages.create({
@@ -141,18 +195,6 @@ const CreateTrip = () => {
                                 handleInput("location", value);
                             },
                         }}
-                    />
-                </div>
-                <div>
-                    <h2 className="text-xl my-3 font-bold">
-                        How many days are you planning your trip?
-                    </h2>
-                    <Input
-                        placeholder={"Less than 6"}
-                        type="number"
-                        onChange={(e) =>
-                            handleInput("noOfDays", e.target.value)
-                        }
                     />
                 </div>
             </div>

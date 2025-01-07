@@ -19,19 +19,18 @@ const ViewTrip = () => {
 
     return (
         <div className="p-10">
-            <h1 className="text-3xl font-bold">Your Trip Plan</h1>
-            <pre className="mt-5 bg-gray-100 p-5 rounded">
+            <h1 className="text-3xl md:px-20 font-bold">Your Trip Plan</h1>
+            {/* <pre className="mt-5 bg-gray-100 p-5 rounded">
                 {JSON.stringify(tripData, null, 2)}
-            </pre>
+            </pre> */}
             <div className="p-10 md:px-20 lg:pd-44 xl:pd-56">
                 {/* Information Section */}
-                <InfoSection tripData={tripData} />
-                <Hotels tripData={tripData} />
+                <InfoSection trip={tripData} />
+                <Hotels trip={tripData} />
                 {/* Daily Plans */}
-                {/* <Itinerary trip={trip} />  */}
-                <PlacesToVisit tripData={tripData} />
+                <PlacesToVisit trip={tripData} />
                 {/* Footer */}
-                <Footer tripData={tripData} />
+                <Footer trip={tripData} />
             </div>
         </div>
     );
