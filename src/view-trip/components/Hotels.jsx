@@ -19,14 +19,16 @@ const Hotels = ({ trip }) => {
                         }
                         target="_blank"
                     >
-                        <div className="rounded-xl shadow-md hover:scale-105 transition-all cursor-pointer">
+                        <div className="rounded-xl shadow-md hover:scale-105 transition-all ">
                             <img
                                 className="rounded-tl-xl rounded-tr-xl lg:h-[250px]"
                                 src={`/hotel${index + 1}.jpg`}
                             />
                             <div className="p-5 my-2 flex flex-col">
-                                <h2 className="font-medium sm:text-sm">
-                                    <div>{hotel.name}</div>
+                                <h2>
+                                    <div className="text-lg font-bold">
+                                        {hotel.name}
+                                    </div>
                                 </h2>
                                 <h2 className="text-xs flex gap-1 mt-1 text-gray-400 truncate">
                                     <div className="flex items-center justify-center">
@@ -35,7 +37,9 @@ const Hotels = ({ trip }) => {
                                             size={16}
                                         />
                                     </div>{" "}
-                                    {hotel.address}
+                                    <div className="underline cursor-pointer hover:text-orange-500">
+                                        {hotel.address}
+                                    </div>
                                 </h2>
                                 <h2 className="text-xs  wrap my-2 truncate">
                                     {hotel.description}

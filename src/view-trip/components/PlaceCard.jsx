@@ -18,7 +18,7 @@ const PlaceCard = ({ place }) => {
             target="_blank"
             className="block"
         >
-            <div className="group flex-col rounded-2xl p-4 mt-3 flex gap-3 hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl bg-white/80 backdrop-blur-sm cursor-pointer border border-gray-100">
+            <div className="group flex-col rounded-2xl p-4 mt-3 flex gap-3 hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl  backdrop-blur-sm cursor-pointer border border-gray-100">
                 <div className="flex gap-5 flex-col sm:flex-row">
                     <img
                         src={`/vacation${
@@ -31,7 +31,7 @@ const PlaceCard = ({ place }) => {
                         <div className="flex justify-between">
                             <div className="space-y-2 w-full">
                                 <div className="flex justify-between items-start">
-                                    <div className="text-xl font-semibold text-orange-500 break-words">
+                                    <div className="text-xl font-semibold text-black break-words">
                                         {placeName}
                                     </div>
                                     <div className="rounded-xl p-2 bg-green-50 text-green-600 text-sm">
@@ -44,7 +44,9 @@ const PlaceCard = ({ place }) => {
                                         className="text-tour-orange"
                                         size={16}
                                     />
-                                    <div>{placeLocation}</div>
+                                    <div className="underline  hover:text-orange-500">
+                                        {placeLocation}
+                                    </div>
                                 </div>
                             </div>
                         </div>

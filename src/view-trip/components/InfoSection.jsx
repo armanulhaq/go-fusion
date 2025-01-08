@@ -3,13 +3,15 @@ const InfoSection = ({ trip }) => {
         <div>
             <img
                 className="h-[240px] lg:h-[340px]  w-full object-cover object-center  rounded-xl"
-                src={"/infosection.jpg"}
+                src={`/places${Math.floor(Math.random() * 6) + 1}.jpg   `}
                 alt=""
             />
 
             <div className="flex justify-between items-center">
                 <div className="my-5 flex flex-col gap-2">
-                    <h2 className="font-bold text-2xl">{trip?.destination}</h2>
+                    <h2 className="font-bold text-lg lg:text-2xl">
+                        {trip?.destination}
+                    </h2>
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -39,11 +41,11 @@ const InfoSection = ({ trip }) => {
                                 <path d="M19.07 4.93l-1.41 1.41" />
                             </svg>
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 ml-4">
+                        <h3 className="text-md lg:text-lg font-semibold text-gray-900 ml-4">
                             Best time to visit:
                         </h3>
                     </div>
-                    <p className="lg:ml-14 text-orange-500 text-lg">
+                    <p className="ml-14 text-orange-500 text-md">
                         {trip?.bestTimeToVisit}
                     </p>
                 </div>
@@ -67,11 +69,11 @@ const InfoSection = ({ trip }) => {
                                 <path d="M7 15h10" />
                             </svg>
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 ml-4">
+                        <h3 className="text-md lg:text-lg font-semibold text-gray-900 ml-4">
                             General Weather:
                         </h3>
                     </div>
-                    <p className="lg:ml-14 text-blue-500 text-lg">
+                    <p className="ml-14 text-blue-500 text-md">
                         {trip?.weatherNote}
                     </p>
                 </div>
