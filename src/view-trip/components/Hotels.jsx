@@ -22,7 +22,7 @@ const Hotels = ({ trip }) => {
                         <div className="rounded-xl shadow-md hover:scale-105 transition-all ">
                             <img
                                 className="rounded-tl-xl rounded-tr-xl lg:h-[250px]"
-                                src={`/hotel${index + 1}.jpg`}
+                                src={`/hotel${index + 1}.png`}
                             />
                             <div className="p-5 my-2 flex flex-col">
                                 <h2>

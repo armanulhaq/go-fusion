@@ -23,7 +23,7 @@ const PlaceCard = ({ place }) => {
                     <img
                         src={`/vacation${
                             Math.floor(Math.random() * 9) + 1
-                        }.jpg`}
+                        }.png`}
                         alt={placeName}
                         className="w-full h-[220px] sm:w-[220px] sm:h-[220px] rounded-xl object-cover group-hover:shadow-md transition-all duration-300"
                     />
