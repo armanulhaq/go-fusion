@@ -3,7 +3,7 @@ const InfoSection = ({ trip }) => {
         <div>
             <img
                 className="h-[240px] lg:h-[340px]  w-full object-cover object-center  rounded-xl"
-                src={"/pexels.jpg"}
+                src={"/infosection.jpg"}
                 alt=""
             />
 

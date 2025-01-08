@@ -19,7 +19,10 @@ const Hotels = ({ trip }) => {
                         target="_blank"
                     >
                         <div className="rounded-xl shadow-md hover:scale-105 transition-all cursor-pointer">
-                            <img className="rounded-xl" src="/hotel.jpg" />
+                            <img
+                                className="rounded-xl lg:h-[250px]"
+                                src={`/hotel${index + 1}.jpg`}
+                            />
                             <div className="p-5 my-2 flex flex-col">
                                 <h2 className="font-medium sm:text-sm">
                                     <div>{hotel.name}</div>

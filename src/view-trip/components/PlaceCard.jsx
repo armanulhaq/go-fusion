@@ -8,7 +8,6 @@ const PlaceCard = ({ place }) => {
     const ticketPricing = place?.price || "Unknown pricing";
     const bookingRequired = place?.bookingRequired ? "🎫 Booking Required" : "";
     const duration = place?.recommendedDuration || "";
-    const imageSrc = place?.image || "/places.jpg";
     console.log(placeLocation);
     return (
         <Link
@@ -19,7 +18,9 @@ const PlaceCard = ({ place }) => {
             <div className="flex-col rounded-xl p-3 mt-3 flex gap-2 hover:scale-105 transition-all shadow-md cursor-pointer">
                 <div className="flex gap-5 flex-col sm:flex-row">
                     <img
-                        src={imageSrc}
+                        src={`/vacation${
+                            Math.floor(Math.random() * 9) + 1
+                        }.jpg`}
                         alt={placeName}
                         className="w-100 h-[200px] sm:w-[200px] sm:h-[200px] rounded-xl object-cover"
                     />
