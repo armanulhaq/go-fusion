@@ -7,15 +7,12 @@ const PlaceCard = ({ place }) => {
     const timeTravel = place?.time || "Unknown time";
     const ticketPricing = place?.price || "Unknown pricing";
     const bookingRequired = place?.bookingRequired ? "🎫 Booking Required" : "";
-    const difficultyLevel = place?.difficultyLevel || "";
     const duration = place?.recommendedDuration || "";
     const imageSrc = place?.image || "/places.jpg";
-
+    console.log(placeLocation);
     return (
         <Link
-            to={`https://google.com/maps/search/?api=1&query=${encodeURIComponent(
-                placeLocation
-            )}`}
+            to={`https://google.com/maps/search/?api=1&query=${placeLocation}}`}
             target="_blank"
             className="block"
         >

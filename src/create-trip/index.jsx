@@ -1,10 +1,8 @@
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import { useState, useEffect } from "react";
-import { Input } from "@/components/ui/input";
+import { useState } from "react";
 import { SelectBudgetOptions, SelectTravelList } from "@/constants/options";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import axios from "axios";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import Anthropic from "@anthropic-ai/sdk";
@@ -13,7 +11,6 @@ const CreateTrip = () => {
     const [place, setPlace] = useState();
     const [formData, setFormData] = useState({});
     const [loading, setLoading] = useState(false);
-    const [response, setResponse] = useState(null);
 
     const redirect = useNavigate();
 
@@ -31,8 +28,6 @@ const CreateTrip = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    useEffect(() => {}, [formData]);
-
     const onGenerateTrip = async () => {
         if (!formData?.location || !formData?.traveller || !formData?.budget) {
             toast.error("Please fill all required fields.");
@@ -47,78 +42,65 @@ const CreateTrip = () => {
         });
 
         const prompt = `You are a travel planning assistant. Generate a travel plan in valid JSON format.
-The response must be a single JSON object with no additional text or formatting.
-Create a plan with the following exact structure:
-{
-    "destination": string,
-    "duration": string,
-    "groupSize": string,
-    "budget": string,
-    "hotels": [
+        The response must be a single JSON object with no additional text or formatting.
+        Create a plan with the following exact structure:
         {
-            "name": string,
-            "address": string,
-            "pricePerNight": string,
-            "coordinates": {
-                "lat": number,
-                "lng": number
-            },
-            "rating": number,
-            "description": string
-        }
-    ],
-    "itinerary": {
-        "morning": [
-            {
-                "time": string,
-                "activity": string,
-                "location": string,
-                "coordinates": {
-                    "lat": number,
-                    "lng": number
-                },
-                "price": string,
-                "description": string,
-                "recommendedDuration": string,
-                "bookingRequired": boolean,
-                "bestTimeToVisit": string,
-                "category": ["Cultural", "Adventure", "Food", "Nature", "Shopping"],
-                "difficultyLevel": "Easy/Moderate/Challenging",
-                "facilities": ["restrooms", "cafeteria", "parking", "wifi"],
-                "localTips": string,
-                "contactInfo": {
-                    "phone": string,
-                    "website": string
+            "destination": string,
+            "duration": string,
+            "groupSize": string,
+            "budget": string,
+            "hotels": [
+                {
+                    "name": string,
+                    "address": string,
+                    "pricePerNight": string,
+                    "coordinates": {
+                        "lat": number,
+                        "lng": number
+                    },
+                    "rating": number,
+                    "description": string
                 }
-            }
-        ],
-        "afternoon": [
-            // Same structure as morning activities
-        ],
-        "evening": [
-            // Same structure as morning activities
-        ]
-    },
-    "bestTimeToVisit": string,
-    "currency": string,
-    "weatherNote": string
-}
+            ],
+            "itinerary": {
+                "morning": [
+                    {
+                        "time": string,
+                        "activity": string,
+                        "location": string,
+                        "price": string,
+                        "description": string,
+                        "recommendedDuration": string,
+                        "bookingRequired": boolean,
+                        "bestTimeToVisit": string,
+                        "localTips": string,
+                    }
+                ],
+                "afternoon": [
+                    // Same structure as morning activities
+                ],
+                "evening": [
+                    // Same structure as morning activities
+                ]
+            },
+            "bestTimeToVisit": string,
+            "weatherNote": string
+        }
 
-Create a plan for:
-- Location: ${formData.location.label}
-- Number of days: ${formData.noOfDays}
-- Traveller(s): ${formData.traveller}
-- Budget: ${formData.budget}
+        Create a plan for:
+        - Location: ${formData.location.label}
+        - Number of days: ${formData.noOfDays}
+        - Traveller(s): ${formData.traveller}
+        - Budget: ${formData.budget}
 
-Requirements:
-1. Include exactly 5 hotels
-2. Each time period (morning, afternoon, evening) must have at least 2 activities
-3. All prices must include the local currency symbol
-4. All coordinates must be valid decimal numbers
-5. Ratings must be between 0 and 5, with one decimal place
-6. Times must be in HH:MM-HH:MM format
+        Requirements:
+        1. Include exactly 5 hotels
+        2. Each time period (morning, afternoon, evening) must have at least 2 activities
+        3. All prices must include the local currency symbol
+        4. Ratings must be between 0 and 5, with one decimal place
+        5. Times must be in HH:MM-HH:MM format
 
-Important: Ensure the response is ONLY the JSON object with no additional text, markdown, or formatting.`;
+        Important: Ensure the response is ONLY the JSON object with no additional text, markdown, or formatting.`;
 
         try {
             const msg = await anthropic.messages.create({
@@ -136,33 +118,9 @@ Important: Ensure the response is ONLY the JSON object with no additional text, 
 
             const responseContent = msg.content[0].text;
 
-            // Clean the response: remove any potential markdown or text outside the JSON
-            const jsonStart = responseContent.indexOf("{");
-            const jsonEnd = responseContent.lastIndexOf("}") + 1;
-
-            if (jsonStart === -1 || jsonEnd === 0) {
-                throw new Error("No valid JSON object found in response");
-            }
-
-            const cleanJson = responseContent.slice(jsonStart, jsonEnd);
-
-            try {
-                const parsedResponse = JSON.parse(cleanJson);
-                setResponse(JSON.stringify(parsedResponse, null, 2));
-                console.log(
-                    "Successfully parsed JSON response",
-                    parsedResponse
-                );
-                redirect("/view-trip", { state: { tripData: parsedResponse } }); //sends the data to view-trip
-                //useNavigate stored in redirect allows us to Pass additional data (called state) to the target route when navigating.
-            } catch (parseError) {
-                console.error("JSON Parse Error:", parseError);
-                // If JSON parsing fails, show the cleaned response for debugging
-                setResponse(
-                    "Error parsing JSON. Raw response:\n\n" + cleanJson
-                );
-                toast.error("Failed to parse the trip plan. Please try again.");
-            }
+            const parsedResponse = JSON.parse(responseContent);
+            redirect("/view-trip", { state: { tripData: parsedResponse } }); //sends the data to view-trip
+            //useNavigate stored in redirect allows us to Pass additional data (called state) to the target route when navigating.
         } catch (error) {
             console.error("API Error:", error);
             toast.error("Failed to generate the trip plan. Please try again.");
@@ -187,7 +145,7 @@ Important: Ensure the response is ONLY the JSON object with no additional text, 
                         What is your destination of choice?
                     </h2>
                     <GooglePlacesAutocomplete
-                        apiKey="AIzaSyAsiu-PZRr7Mi2Ec1GidLo9vMpGMKpZv5I"
+                        apiKey={import.meta.env.VITE_PLACES_API_KEY}
                         selectProps={{
                             place,
                             onChange: (value) => {
@@ -233,7 +191,7 @@ Important: Ensure the response is ONLY the JSON object with no additional text, 
                                 handleInput("traveller", item.people)
                             }
                             className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${
-                                formData?.traveller == item.people &&
+                                formData?.traveller == item.people && //coming from the options
                                 "shadow-lg border-black"
                             }`}
                         >

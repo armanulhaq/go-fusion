@@ -1,12 +1,12 @@
-import { useLocation } from "react-router-dom";
 import InfoSection from "./components/InfoSection";
 import Hotels from "./components/Hotels";
 import PlacesToVisit from "./components/PlacesToVisit";
-import Footer from "./components/Footer";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ViewTrip = () => {
     const location = useLocation(); // gives access to the current route's location object. This object includes state information sent by useNavigation
     const tripData = location.state?.tripData;
+    const navigate = useNavigate(); // Hook to navigate programmatically
 
     if (!tripData) {
         // Redirect to the home page if no trip data is found
@@ -27,8 +27,6 @@ const ViewTrip = () => {
                 <Hotels trip={tripData} />
                 {/* Daily Plans */}
                 <PlacesToVisit trip={tripData} />
-                {/* Footer */}
-                <Footer trip={tripData} />
             </div>
         </div>
     );

@@ -27,7 +27,7 @@ const Hotels = ({ trip }) => {
                                 <h2 className="text-xs text-gray-400 truncate">
                                     📍 {hotel.address}
                                 </h2>
-                                <h2 className="text-xs  wrap my-2">
+                                <h2 className="text-xs  wrap my-2 truncate">
                                     {hotel.description}
                                 </h2>
                                 <div className="flex justify-between mt-2">
