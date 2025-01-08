@@ -6,7 +6,6 @@ import { toast } from "sonner";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import Anthropic from "@anthropic-ai/sdk";
-
 const CreateTrip = () => {
     const [place, setPlace] = useState();
     const [formData, setFormData] = useState({});
@@ -130,93 +129,101 @@ const CreateTrip = () => {
     };
 
     return (
-        // default padding-5 and margin-top-10
-        <div className="sm:px-10 md:px-32 lg:px-56 xl:px-250 px-5 mt-10">
-            <h2 className="font-bold text-3xl">
-                Tell us your travel preferences 🏕️
-            </h2>
-            <p className="mt-3 text-gray-500 text-xl">
-                Just provide some basic information, and our trip planner will
-                generate a customized itinerary based on your preferences.
-            </p>
-            <div className="mt-10 flex flex-col gap-10">
+        <div className="flex flex-col gap-20">
+            <div className="sm:px-10 md:px-32 lg:px-56 xl:px-250 px-5 mt-24 relative">
+                <h2 className="font-bold text-3xl">
+                    Tell us your travel preferences 🏕️
+                </h2>
+                <p className="mt-3 text-gray-500 text-xl">
+                    Just provide some basic information, and our trip planner
+                    will generate a customized itinerary based on your
+                    preferences.
+                </p>
+                <div className="mt-10 flex flex-col gap-10">
+                    <div>
+                        <h2 className="text-xl my-3 font-bold">
+                            What is your destination of choice?
+                        </h2>
+                        <GooglePlacesAutocomplete
+                            apiKey="AIzaSyAsiu-PZRr7Mi2Ec1GidLo9vMpGMKpZv5I"
+                            selectProps={{
+                                place,
+                                onChange: (value) => {
+                                    setPlace(value);
+                                    handleInput("location", value);
+                                },
+                            }}
+                        />
+                    </div>
+                </div>
                 <div>
                     <h2 className="text-xl my-3 font-bold">
-                        What is your destination of choice?
+                        What is your Budget?
                     </h2>
-                    <GooglePlacesAutocomplete
-                        apiKey="AIzaSyAsiu-PZRr7Mi2Ec1GidLo9vMpGMKpZv5I"
-                        selectProps={{
-                            place,
-                            onChange: (value) => {
-                                setPlace(value);
-                                handleInput("location", value);
-                            },
-                        }}
-                    />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-5">
+                        {SelectBudgetOptions.map((item, index) => (
+                            <div
+                                key={index}
+                                onClick={() =>
+                                    handleInput("budget", item.title)
+                                }
+                                className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${
+                                    formData?.budget == item.title &&
+                                    "shadow-lg border-orange-500 bg-orange-50"
+                                }`}
+                            >
+                                <h2 className="4xl">{item.icon}</h2>
+                                <h2 className="font-bold text-lg">
+                                    {item.title}
+                                </h2>
+                                <h2 className="text-sm text-gray-500">
+                                    {item.desc}
+                                </h2>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2 className="text-xl my-3 font-bold">What is your Budget?</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-5">
-                    {SelectBudgetOptions.map((item, index) => (
-                        <div
-                            key={index}
-                            onClick={() => handleInput("budget", item.title)}
-                            className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${
-                                formData?.budget == item.title &&
-                                "shadow-lg border-black"
-                            }`}
-                            // The ?. (optional chaining) ensures no error occurs if formData is undefined.
-                        >
-                            <h2 className="4xl">{item.icon}</h2>
-                            <h2 className="font-bold text-lg">{item.title}</h2>
-                            <h2 className="text-sm text-gray-500">
-                                {item.desc}
-                            </h2>
-                        </div>
-                    ))}
+                <div>
+                    <h2 className="text-xl my-3 font-bold">
+                        Who do you plan on traveling with on your next
+                        adventure?
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-5">
+                        {SelectTravelList.map((item, index) => (
+                            <div
+                                key={index}
+                                onClick={() =>
+                                    handleInput("traveller", item.people)
+                                }
+                                className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${
+                                    formData?.traveller == item.people &&
+                                    "shadow-lg border-orange-500 bg-orange-50"
+                                }`}
+                            >
+                                <h2 className="4xl">{item.icon}</h2>
+                                <h2 className="font-bold text-lg">
+                                    {item.title}
+                                </h2>
+                                <h2 className="text-sm text-gray-500">
+                                    {item.desc}
+                                </h2>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-
-            <div>
-                <h2 className="text-xl my-3 font-bold">
-                    Who do you plan on traveling with on your next adventure?
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-5">
-                    {SelectTravelList.map((item, index) => (
-                        <div
-                            key={index}
-                            onClick={() =>
-                                handleInput("traveller", item.people)
-                            }
-                            className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${
-                                formData?.traveller == item.people && //coming from the options
-                                "shadow-lg border-black"
-                            }`}
-                        >
-                            <h2 className="4xl">{item.icon}</h2>
-                            <h2 className="font-bold text-lg">{item.title}</h2>
-                            <h2 className="text-sm text-gray-500">
-                                {item.desc}
-                            </h2>
-                        </div>
-                    ))}
+                <div className="my-10 justify-end flex">
+                    <Button
+                        className="bg-orange-500 text-white"
+                        onClick={onGenerateTrip}
+                        disable={loading}
+                    >
+                        {loading ? (
+                            <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />
+                        ) : (
+                            "Generate Trip"
+                        )}
+                    </Button>
                 </div>
-            </div>
-
-            <div className="my-10 justify-end flex">
-                <Button
-                    className="bg-orange-500 text-white"
-                    onClick={onGenerateTrip}
-                    disable={loading}
-                >
-                    {loading ? (
-                        <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />
-                    ) : (
-                        "Generate Trip"
-                    )}
-                </Button>
             </div>
         </div>
     );

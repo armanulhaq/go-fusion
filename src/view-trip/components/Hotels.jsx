@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { MapPin } from "lucide-react";
 
 const Hotels = ({ trip }) => {
     return (
@@ -20,15 +21,21 @@ const Hotels = ({ trip }) => {
                     >
                         <div className="rounded-xl shadow-md hover:scale-105 transition-all cursor-pointer">
                             <img
-                                className="rounded-xl lg:h-[250px]"
+                                className="rounded-tl-xl rounded-tr-xl lg:h-[250px]"
                                 src={`/hotel${index + 1}.jpg`}
                             />
                             <div className="p-5 my-2 flex flex-col">
                                 <h2 className="font-medium sm:text-sm">
                                     <div>{hotel.name}</div>
                                 </h2>
-                                <h2 className="text-xs text-gray-400 truncate">
-                                    📍 {hotel.address}
+                                <h2 className="text-xs flex gap-1 mt-1 text-gray-400 truncate">
+                                    <div className="flex items-center justify-center">
+                                        <MapPin
+                                            className="text-red-500"
+                                            size={16}
+                                        />
+                                    </div>{" "}
+                                    {hotel.address}
                                 </h2>
                                 <h2 className="text-xs  wrap my-2 truncate">
                                     {hotel.description}
@@ -40,8 +47,15 @@ const Hotels = ({ trip }) => {
                                             per night
                                         </span>
                                     </h2>
-                                    <h2 className="text-sm">
-                                        ⭐️ {hotel?.rating}
+                                    <h2 className="text-md flex items-center gap-1 px-2rounded-xl">
+                                        <img
+                                            className="h-3 w-3 flex items-center"
+                                            src="/star.png"
+                                            alt=""
+                                        />
+                                        <div className="flex items-end">
+                                            {hotel?.rating}
+                                        </div>
                                     </h2>
                                 </div>
                             </div>

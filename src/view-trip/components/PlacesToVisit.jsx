@@ -25,9 +25,6 @@ const PlacesToVisit = ({ trip }) => {
                 {combinedItinerary.length > 0 ? (
                     combinedItinerary.map((item, index) => (
                         <div key={index}>
-                            <h2 className="font-bold text-lg mt-8">
-                                {item.activity}
-                            </h2>
                             <div className="grid lg:grid-cols-2">
                                 {/* You can map through places if needed */}
                                 <div>
