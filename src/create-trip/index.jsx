@@ -145,7 +145,7 @@ const CreateTrip = () => {
                         What is your destination of choice?
                     </h2>
                     <GooglePlacesAutocomplete
-                        apiKey={import.meta.env.VITE_PLACES_API_KEY}
+                        apiKey="AIzaSyAsiu-PZRr7Mi2Ec1GidLo9vMpGMKpZv5I"
                         selectProps={{
                             place,
                             onChange: (value) => {
