@@ -33,7 +33,7 @@ const Hero = () => {
                     custom itineraries tailored to your interests and budget.
                 </p>
                 <Link to={"create-trip"}>
-                    <Button className="text-lg mt-20 md:text-xl lg:text-xxl py-4 px-8 md:py-5 md:px-10 bg-orange-500 text-white rounded-lg shadow-lg hover:bg-orange-600">
+                    <Button className="text-md mt-20 md:text-xl lg:text-lg py-4 px-2  lg:p-4  bg-orange-500 text-white rounded-lg shadow-lg hover:bg-orange-600">
                         Get Started, it&apos;s Free
                     </Button>
                 </Link>

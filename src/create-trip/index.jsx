@@ -130,6 +130,16 @@ const CreateTrip = () => {
 
     return (
         <div className="flex flex-col gap-20">
+            {loading && (
+                <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+                    <div className="flex flex-col items-center">
+                        <AiOutlineLoading3Quarters className="h-16 w-16 text-white animate-spin" />
+                        <span className="text-white text-xl mt-4">
+                            Generating your trip plan...
+                        </span>
+                    </div>
+                </div>
+            )}
             <div className="sm:px-10 md:px-32 lg:px-56 xl:px-250 px-5 mt-24 relative">
                 <h2 className="font-bold text-3xl">
                     Tell us your travel preferences 🏕️
