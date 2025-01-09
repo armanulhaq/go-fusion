@@ -1,5 +1,5 @@
 # Go Fusion
-This is a React-based travel planner application that helps users generate customized trip itineraries based on their preferences. Utilizing the Google Places API and Anthropic's AI capabilities, the app allows users to input their travel details, such as destination, budget, number of travelers, and duration of stay. The application generates a detailed travel plan in JSON format, which includes hotel recommendations and a structured itinerary for each day.
+This is a React-based travel planner application that helps users generate customized trip itineraries based on their preferences. Utilizing the Google Places API and Anthropic's AI capabilities, the app allows users to input their travel details, such as destination, budget and number of travelers. The application generates a detailed travel plan in JSON format, which includes hotel recommendations and a structured itinerary for each day.
 
 ## Features
 - User-Friendly Interface: Simple input for travel preferences.
@@ -7,17 +7,17 @@ This is a React-based travel planner application that helps users generate custo
 - AI-Powered Trip Generation: Generates detailed trip plans in JSON format.
 - Dynamic Itinerary: Includes hotel recommendations and daily activities.
 
-##Technologies Used
+## Technologies Used
 - React
 - Google Places API
 - Anthropic AI SDK
 - Tailwind CSS
 - React Router
-- Shadcn
+- ShadCN
 
 ## Getting Started
 
-### Prerequisites
+### Pre-requisites
 Ensure you have the following installed:
 - Node.js
 - npm (Node Package Manager)
