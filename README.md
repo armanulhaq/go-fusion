@@ -4,7 +4,7 @@ This is a React-based travel planner application that helps users generate custo
 ## Features
 - User-Friendly Interface: Simple input for travel preferences.
 - Google Places Integration: Select destinations using autocomplete.
-- AI-Powered Trip Generation: Generates detailed trip plans in JSON format.
+- AI-Powered Trip Generation: Generates detailed trip plans.
 - Dynamic Itinerary: Includes hotel recommendations and daily activities.
 
 ## Technologies Used
