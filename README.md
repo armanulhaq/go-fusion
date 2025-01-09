@@ -1,8 +1,50 @@
-# React + Vite
+# Go Fusion
+This is a React-based travel planner application that helps users generate customized trip itineraries based on their preferences. Utilizing the Google Places API and Anthropic's AI capabilities, the app allows users to input their travel details, such as destination, budget, number of travelers, and duration of stay. The application generates a detailed travel plan in JSON format, which includes hotel recommendations and a structured itinerary for each day.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
+- User-Friendly Interface: Simple input for travel preferences.
+- Google Places Integration: Select destinations using autocomplete.
+- AI-Powered Trip Generation: Generates detailed trip plans in JSON format.
+- Dynamic Itinerary: Includes hotel recommendations and daily activities.
 
-Currently, two official plugins are available:
+##Technologies Used
+- React
+- Google Places API
+- Anthropic AI SDK
+- Tailwind CSS
+- React Router
+- Shadcn
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
+
+### Prerequisites
+Ensure you have the following installed:
+- Node.js
+- npm (Node Package Manager)
+
+## Installation
+1. Clone the repository:
+   ```
+   git clone https://github.com/armanulhaq/go-fusion.git
+   cd go-fusion
+   ```
+2. Install the dependencies:
+   ```
+   npm install
+   ```
+3. Set up environment variables:
+   Create a .env file in the root directory and add your API keys:
+     ```
+     VITE_GOOGLE_PLACES_API_KEY=your_google_places_api_key
+     VITE_ANTHROPIC_API_KEY=your_anthropic_api_key
+     ```
+4. Start the development server:
+    ```
+    npm run dev
+    ```
+5. Open your browser and go to http://localhost:5173.
+
+## Usage
+- Enter your travel preferences including destination, budget, number of travelers, and duration.
+- Click on "Generate Trip" to receive your customized itinerary.
+- Review your trip plan which includes hotel recommendations and daily activities.
