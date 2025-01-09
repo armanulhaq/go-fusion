@@ -10,7 +10,7 @@ const Hero = () => {
                 style={{
                     backgroundImage: `url(/trip${
                         Math.floor(Math.random() * 4) + 1
-                    }.jpg)`,
+                    }.webp)`,
 
                     backgroundSize: "cover",
                     backgroundPosition: "center",
